@@ -25,8 +25,7 @@
   },
   "homepage": "https://github.com/JayKan/wepay-express#readme",
   "scripts": {
-    "start": "nodemon index.js",
-    "postinstall": "npm install"
+    "start": "nodemon index.js"
   },
   "dependencies": {
     "body-parser": "^1.18.2",

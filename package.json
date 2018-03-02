@@ -1,0 +1,40 @@
+{
+  "name": "wepay-express",
+  "version": "1.0.0",
+  "description": "WePay express layer",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JayKan/wepay-express.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JayKan/wepay-express/issues"
+  },
+  "author": {
+    "name": "Jay Kan",
+    "email": "leicasper@gmail.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "WePay",
+    "PayPal Invoicing API"
+  ],
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "homepage": "https://github.com/JayKan/wepay-express#readme",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.2",
+    "helmet": "^3.11.0",
+    "paypal-rest-sdk": "^1.8.1",
+    "winston": "^2.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.15.1"
+  }
+}

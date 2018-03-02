@@ -14,7 +14,7 @@ module.exports = app => {
 
 	// configure express to use bodyParser as middleware
   app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(bodyParser.urlencoded({ extended: false }));
 	app.use(cookieParser());
 
 	// HTTP headers
@@ -26,5 +26,10 @@ module.exports = app => {
 	app.use(helmet.xssFilter());
 	app.use(helmet.ieNoOpen());
 
-
+	app.use((req, res, next) => {
+		res.header('Access-Control-Allow-Credentials', true);
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept');
+    next();
+  });
 }

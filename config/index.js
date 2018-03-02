@@ -4,6 +4,9 @@ const express = require('express');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
+
+const allowedOrigins = ['http://localhost:3000'];
 
 module.exports = app => {
 	app.set('trust proxy', true);
@@ -11,6 +14,25 @@ module.exports = app => {
 	// server address
 	app.set('host', process.env.HOST || 'localhost');
 	app.set('port', process.env.PORT || 5000);
+
+	// app.use(cors());
+	app.use(cors({
+		origin: (origin, callback) => {
+			// allow requests with no origin
+			// (like mobile apps or curl requests)
+			if(!origin) return callback(null, true);
+			if(allowedOrigins.indexOf(origin) === -1){
+				const msg = 'The CORS policy for this site does not allow access from the specified Origin.'
+				return callback(new Error(msg), false);
+			}
+			return callback(null, true);
+		},
+
+		exposedHeaders: ['Content-Length'],
+
+		credentials: true,
+	}));
+  app.options('*', cors());
 
 	// configure express to use bodyParser as middleware
   app.use(bodyParser.json());
@@ -31,5 +53,5 @@ module.exports = app => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept');
     next();
-  });
+	});
 }

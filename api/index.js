@@ -4,7 +4,6 @@ const express = require('express');
 const api = express.Router();
 const paypal = require('paypal-rest-sdk');
 const logger = require('winston');
-const cors = require('cors');
 
 paypal.configure({
   'mode': 'sandbox',
@@ -75,8 +74,6 @@ const updatedInvoiceJson = Object.assign({}, MERCHANT_INFO, {
 });
 
 module.exports = app => {
-  app.use(cors());
-
   api.post('/get', (req, res) => {
     const { id } = req.body;
 

@@ -20,11 +20,13 @@
     "PayPal Invoicing API"
   ],
   "engines": {
-    "node": ">=8.0.0"
+    "node": "8.0.0",
+    "npm": "5.5.x",
   },
   "homepage": "https://github.com/JayKan/wepay-express#readme",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "postinstall": "npm install",
   },
   "dependencies": {
     "body-parser": "^1.18.2",

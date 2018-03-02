@@ -4,6 +4,7 @@ const express = require('express');
 const api = express.Router();
 const paypal = require('paypal-rest-sdk');
 const logger = require('winston');
+const cors = require('cors');
 
 paypal.configure({
   'mode': 'sandbox',
@@ -74,6 +75,8 @@ const updatedInvoiceJson = Object.assign({}, MERCHANT_INFO, {
 });
 
 module.exports = app => {
+  app.options('*', cors());
+
   app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");

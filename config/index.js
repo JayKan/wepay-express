@@ -15,23 +15,23 @@ module.exports = app => {
 	app.set('host', process.env.HOST || 'localhost');
 	app.set('port', process.env.PORT || 5000);
 
-	// app.use(cors());
-	app.use(cors({
-		origin: (origin, callback) => {
-			// allow requests with no origin
-			// (like mobile apps or curl requests)
-			if(!origin) return callback(null, true);
-			if(allowedOrigins.indexOf(origin) === -1){
-				const msg = 'The CORS policy for this site does not allow access from the specified Origin.'
-				return callback(new Error(msg), false);
-			}
-			return callback(null, true);
-		},
+	app.use(cors());
+	// app.use(cors({
+	// 	origin: (origin, callback) => {
+	// 		// allow requests with no origin
+	// 		// (like mobile apps or curl requests)
+	// 		if(!origin) return callback(null, true);
+	// 		if(allowedOrigins.indexOf(origin) === -1){
+	// 			const msg = 'The CORS policy for this site does not allow access from the specified Origin.'
+	// 			return callback(new Error(msg), false);
+	// 		}
+	// 		return callback(null, true);
+	// 	},
 
-		exposedHeaders: ['Content-Length'],
+	// 	exposedHeaders: ['Content-Length'],
 
-		credentials: true,
-	}));
+	// 	credentials: true,
+	// }));
   app.options('*', cors());
 
 	// configure express to use bodyParser as middleware
@@ -49,7 +49,7 @@ module.exports = app => {
 	app.use(helmet.ieNoOpen());
 
 	app.use((req, res, next) => {
-		res.header('Access-Control-Allow-Credentials', true);
+		// res.header('Access-Control-Allow-Credentials', true);
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept');
     next();

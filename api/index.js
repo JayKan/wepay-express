@@ -90,6 +90,10 @@ module.exports = app => {
     });
   });
 
+  api.get('/helloWorld', (req, res) => {
+    return res.json({ data: 'helloWorld' });
+  });
+
   api.post('/create', (req, res) => {
     const { name, description, price, imageUrl } = req.body;
     const payload = Object.assign({}, MERCHANT_INFO, {
